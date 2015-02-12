@@ -1,31 +1,59 @@
 (function() {
   /**
    * @ngdoc directive
-   * @name tpl-select
+   * @name css-media-query-class-change
    * @description
    * @author Thomas Cirksena grumpyshoe@gmail.com
    *
-   * Creates a customizable select dropdown
+   * Change class on screen size defined by 'matchmedia'
    *
-   * Attributes:
-   * tpl-options: array of options shown on select
-   * tpl-label: the object key that represents the label that data
-   * ng-model: the model where the data should be saved
+   * app.js
+   * ===========
    *
-   * @example creating dynamic filled select field (tpl-select):
-   * <div tpl-select tpl-options="myOptions" tpl-label="myLabelKey" ng-model="myModel"></div>
+   * Add the following to app.js:
+   * .run(function($rootScope, $window) {
+   *   $rootScope.windowWidth = $window.outerWidth;
+   *   angular.element($window).bind('resize', function() {
+   *     $rootScope.windowWidth = $window.outerWidth;
+   *     $rootScope.$apply('windowWidth');
+   *   });
+   * })
    *
-   * @example creating dynamic filled select field by using String-array for parameter(tpl-select):
-   * <div tpl-select tpl-options="myOptions" ng-model="myModel"></div>
+   * Attributes
+   * ==============
+   *  - change-media-query-class-default : The default class that should be replaced
+   *  - change-media-query-class : A list theat defines which classes should be used for which screen size
+   *    --> The screen sizes are seperated in: palm, lap and desk
    *
-   * @example creating static filled select field (tpl-select-static):
-   * <div tpl-select-static ng-model="myModel">
-   *   <option value="key1">label1</option>
-   *   <option value="key2">label2</option>
+   * Example
+   * ==============
+   *  <div class="test" change-media-query-class-default="test" change-media-query-class="desk:test--desk palm:test--palm">
+   #    test phone
+   #  </div>
+   *
+   * - html-snippet
+   * -----------------
+   * <div class="test" change-media-query-class-default="test" change-media-query-class="desk:test--desk palm:test--palm">
+   *  This is a test
    * </div>
    *
-   *  Note:
-   *  There is no real styling! You have to style the dropdown by your own!
+   * - scss-snippet
+   * -----------------
+   * .test {
+   *     font-family : 'Verdana, "Bitstream Vera Sans", sans-serif';
+   *     font-size : 20px;
+   *
+   *     &--desk {
+   *         font-size: 15px;
+   *         font-weight: bold;
+   *     }
+   *
+   *     &--palm {
+   *         font-size: 10px;
+   *         color: #123;
+   *     }
+   * }
+   *
    */
   'use strict';
 
@@ -40,7 +68,7 @@
         restrict: 'A',
         link: function(scope, elements, attrs) {
 
-          var classeChanges = attrs.changeClass.split(' ');
+          var classeChanges = attrs['css-media-query-class'].split(' ');
           var classes = {};
           for (var i = 0; i < classeChanges.length; i++) {
             var changeDetails = classeChanges[i].split(':');

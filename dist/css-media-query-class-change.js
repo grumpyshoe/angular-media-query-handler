@@ -1,4 +1,4 @@
-(function() {
+(function () {
   /**
    * @ngdoc directive
    * @name css-media-query-class-change
@@ -30,24 +30,48 @@
    *  <div class="test" change-media-query-class-default="test" change-media-query-class="desk:test--desk palm:test--palm">
    #    test phone
    #  </div>
+   *
+   * - html-snippet
+   * -----------------
+   * <div class="test" change-media-query-class-default="test" change-media-query-class="desk:test--desk palm:test--palm">
+   *  This is a test
+   * </div>
+   *
+   * - scss-snippet
+   * -----------------
+   * .test {
+   *     font-family : 'Verdana, "Bitstream Vera Sans", sans-serif';
+   *     font-size : 20px;
+   *
+   *     &--desk {
+   *         font-size: 15px;
+   *         font-weight: bold;
+   *     }
+   *
+   *     &--palm {
+   *         font-size: 10px;
+   *         color: #123;
+   *     }
+   * }
+   *
    */
   'use strict';
   //login directive
   angular.module('cssMediaQueryClassChange', ['matchmedia-ng']).directive('changeMediaQueryClass', [
     '$rootScope',
     'matchmedia',
-    function($rootScope, matchmedia) {
+    function ($rootScope, matchmedia) {
       return {
         restrict: 'A',
-        link: function(scope, elements, attrs) {
-          var classeChanges = attrs.changeClass.split(' ');
+        link: function (scope, elements, attrs) {
+          var classeChanges = attrs['css-media-query-class'].split(' ');
           var classes = {};
           for (var i = 0; i < classeChanges.length; i++) {
             var changeDetails = classeChanges[i].split(':');
             classes[changeDetails[0]] = changeDetails[1];
           }
           //add $watch for handling window resize
-          $rootScope.$watch('windowWidth', function(newVal, oldVal) {
+          $rootScope.$watch('windowWidth', function (newVal, oldVal) {
             if (matchmedia.isPhone() && classes.palm) {
               elements.removeClass(attrs.changeClassDefault);
               elements.addClass(classes.palm);
