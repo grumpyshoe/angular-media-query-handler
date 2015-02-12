@@ -5,6 +5,7 @@ Change class on screen size defined by directive [matchmedia-ng](https://github.
 # - app.js -
 Add the following to app.js for handling resize and setting widths
 ```
+//convert 'resize' event to angular event to be able for binding '$watch'
 .run(function($rootScope, $window) {
   $rootScope.windowWidth = $window.outerWidth;
   angular.element($window).bind('resize', function() {
@@ -13,11 +14,12 @@ Add the following to app.js for handling resize and setting widths
   });
 })
 
+//define custom breakpoints (optional)
 .config(['matchmediaProvider',
   function(matchmediaProvider) {
     matchmediaProvider.rules.phone = '(max-width: 300px)';
-    matchmediaProvider.rules.tablet = '(min-width: 500px) and (max-width:600px)';
-    matchmediaProvider.rules.desktop = '(max-width: 900px)';
+    matchmediaProvider.rules.tablet = '(min-width: 301px) and (max-width:500px)';
+    matchmediaProvider.rules.desktop = '(min-width: 501px)';
   }
 ])
 ```

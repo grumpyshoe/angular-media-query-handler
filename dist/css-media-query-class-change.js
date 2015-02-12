@@ -11,6 +11,8 @@
    * ===========
    *
    * Add the following to app.js:
+   *
+   * //convert 'resize' event to angular event to be able for binding '$watch'
    * .run(function($rootScope, $window) {
    *   $rootScope.windowWidth = $window.outerWidth;
    *   angular.element($window).bind('resize', function() {
@@ -19,6 +21,8 @@
    *   });
    * })
    *
+   *
+   * //define custom breakpoints (optional)
    * .config(['matchmediaProvider',
    *   function(matchmediaProvider) {
    *     matchmediaProvider.rules.phone = '(max-width: 300px)';
