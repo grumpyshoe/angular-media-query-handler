@@ -27,9 +27,6 @@
    *
    * Example
    * ==============
-   *  <div class="test" change-media-query-class-default="test" change-media-query-class="desk:test--desk palm:test--palm">
-   #    test phone
-   #  </div>
    *
    * - html-snippet
    * -----------------
@@ -64,7 +61,7 @@
       return {
         restrict: 'A',
         link: function (scope, elements, attrs) {
-          var classeChanges = attrs['css-media-query-class'].split(' ');
+          var classeChanges = attrs.changeMediaQueryClass.split(' ');
           var classes = {};
           for (var i = 0; i < classeChanges.length; i++) {
             var changeDetails = classeChanges[i].split(':');
@@ -73,16 +70,16 @@
           //add $watch for handling window resize
           $rootScope.$watch('windowWidth', function (newVal, oldVal) {
             if (matchmedia.isPhone() && classes.palm) {
-              elements.removeClass(attrs.changeClassDefault);
+              elements.removeClass(attrs.changeMediaQueryClassDefault);
               elements.addClass(classes.palm);
             } else if (matchmedia.isTablet() && classes.lap) {
-              elements.removeClass(attrs.changeClassDefault);
+              elements.removeClass(attrs.changeMediaQueryClassDefault);
               elements.addClass(classes.lap);
             } else if (matchmedia.isDesktop() && classes.desk) {
-              elements.removeClass(attrs.changeClassDefault);
+              elements.removeClass(attrs.changeMediaQueryClassDefault);
               elements.addClass(classes.desk);
             } else {
-              elements.addClass(attrs.changeClassDefault);
+              elements.addClass(attrs.changeMediaQueryClassDefault);
               for (var i = 0; i < Object.keys(classes).length; i++) {
                 elements.removeClass(classes[Object.keys(classes)[i]]);
               }
