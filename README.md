@@ -3,7 +3,7 @@
 Change class on screen size defined by directive [matchmedia-ng](https://github.com/AnalogJ/matchmedia-ng) .
 
 # - app.js -
-Add the following to app.js for handling resize
+Add the following to app.js for handling resize and setting widths
 ```
 .run(function($rootScope, $window) {
   $rootScope.windowWidth = $window.outerWidth;
@@ -12,6 +12,14 @@ Add the following to app.js for handling resize
     $rootScope.$apply('windowWidth');
   });
 })
+
+.config(['matchmediaProvider',
+  function(matchmediaProvider) {
+    matchmediaProvider.rules.phone = '(max-width: 300px)';
+    matchmediaProvider.rules.tablet = '(min-width: 500px) and (max-width:600px)';
+    matchmediaProvider.rules.desktop = '(max-width: 900px)';
+  }
+])
 ```
 
 # - Attributes -

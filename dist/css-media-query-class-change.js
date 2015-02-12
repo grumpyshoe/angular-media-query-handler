@@ -19,6 +19,15 @@
    *   });
    * })
    *
+   * .config(['matchmediaProvider',
+   *   function(matchmediaProvider) {
+   *     matchmediaProvider.rules.phone = '(max-width: 300px)';
+   *     matchmediaProvider.rules.tablet = '(min-width: 500px) and (max-width:600px)';
+   *     matchmediaProvider.rules.desktop = '(max-width: 900px)';
+   *   }
+   * ])
+   *
+   *
    * Attributes
    * ==============
    *  - change-media-query-class-default : The default class that should be replaced
@@ -60,17 +69,25 @@
     '$rootScope',
     'matchmedia',
     function ($rootScope, matchmedia) {
+      var classes = {};
+      var removeModifierClasses = function removeModifierClasses(elements) {
+        var classKeys = Object.keys(classes);
+        for (var i = 0; i < classKeys.length; i++) {
+          elements.removeClass(classes[classKeys[i]]);
+        }
+      };
       return {
         restrict: 'A',
         link: function (scope, elements, attrs) {
           var classeChanges = attrs.changeMediaQueryClass.split(' ');
-          var classes = {};
+          //var classes = {};
           for (var i = 0; i < classeChanges.length; i++) {
             var changeDetails = classeChanges[i].split(':');
             classes[changeDetails[0]] = changeDetails[1];
           }
           //add $watch for handling window resize
           $rootScope.$watch('windowWidth', function (newVal, oldVal) {
+            removeModifierClasses(elements);
             if (matchmedia.isPhone() && classes.palm) {
               elements.removeClass(attrs.changeMediaQueryClassDefault);
               elements.addClass(classes.palm);
