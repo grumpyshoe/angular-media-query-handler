@@ -37,18 +37,20 @@
    * - scss-snippet
    * -----------------
    * .test {
-   *     font-family : 'Verdana, "Bitstream Vera Sans", sans-serif';
-   *     font-size : 20px;
+   *   font-family : 'Verdana, "Bitstream Vera Sans", sans-serif';
+   *   font-size : 20px;
    *
-   *     &--desk {
-   *         font-size: 15px;
-   *         font-weight: bold;
-   *     }
+   *   &--desk {
+   *     @extend .test;
+   *     font-size: 15px;
+   *     font-weight: bold;
+   *   }
    *
-   *     &--palm {
-   *         font-size: 10px;
-   *         color: #123;
-   *     }
+   *   &--palm {
+   *     @extend .test;
+   *     font-size: 10px;
+   *     color: #123;
+   *   }
    * }
    *
    */
