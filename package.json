@@ -1,7 +1,7 @@
 {
-  "name": "css-media-query-class-change",
-  "version": "0.1.0",
-  "description": "css-media-query-class-change",
+  "name": "angular-media-query-handler",
+  "version": "0.2.0",
+  "description": "angular-media-query-handler",
   "keywords": [
     "angular",
     "select"

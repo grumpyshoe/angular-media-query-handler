@@ -70,7 +70,7 @@
   'use strict';
 
   //login directive
-  angular.module('cssMediaQueryClassChange', ['matchmedia-ng'])
+  angular.module('mediaQueryHandler', ['matchmedia-ng'])
 
   .directive('changeMediaQueryClass', [
     '$rootScope',
@@ -78,9 +78,9 @@
     function($rootScope, matchmedia) {
 
       var classes = {};
-      var removeModifierClasses = function removeModifierClasses(elements){
+      var removeModifierClasses = function removeModifierClasses(elements) {
         var classKeys = Object.keys(classes);
-        for(var i=0; i<classKeys.length; i++){
+        for (var i = 0; i < classKeys.length; i++) {
           elements.removeClass(classes[classKeys[i]]);
         }
       }
@@ -116,6 +116,41 @@
               for (var i = 0; i < Object.keys(classes).length; i++) {
                 elements.removeClass(classes[Object.keys(classes)[i]]);
               }
+            }
+
+          })
+
+        }
+      };
+    }
+  ])
+
+  .directive('elementInvisibleFor', [
+    '$rootScope',
+    'matchmedia',
+    function($rootScope, matchmedia) {
+
+      return {
+        restrict: 'A',
+        link: function(scope, elements, attrs) {
+
+          var classes = {};
+          var invisibleClasses = attrs.invisibleFor.split(' ');
+          for (var i = 0; i < elementInvisibleFor.length; i++) {
+            classes[invisibleClasses[0]] = true;
+          }
+
+          //add $watch for handling window resize
+          $rootScope.$watch('windowWidth', function(newVal, oldVal) {
+
+            elements.removeClass('cssMediaQueryClasschange--invisible');
+
+            if (matchmedia.isPhone() && classes.palm) {
+              elements.addClass('cssMediaQueryClasschange--invisible');
+            } else if (matchmedia.isTablet() && classes.lap) {
+              elements.addClass('cssMediaQueryClasschange--invisible');
+            } else if (matchmedia.isDesktop() && classes.desk) {
+              elements.addClass('cssMediaQueryClasschange--invisible');
             }
 
           })

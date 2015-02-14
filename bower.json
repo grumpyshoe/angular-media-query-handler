@@ -1,8 +1,8 @@
 {
-  "name": "css-media-query-class-change",
-  "version": "0.1.0",
+  "name": "angular-media-query-handler",
+  "version": "0.2.0",
   "main": [
-    "dist/css-media-query-class-change.js"
+    "dist/angular-media-query-handler.js"
   ],
   "dependencies": {
     "matchmedia-ng": "https://github.com/AnalogJ/matchmedia-ng.git#~1.0.5"
