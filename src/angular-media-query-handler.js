@@ -135,16 +135,14 @@
         link: function(scope, elements, attrs) {
 
           var classes = {};
-          var invisibleClasses = attrs.invisibleFor.split(' ');
-          for (var i = 0; i < elementInvisibleFor.length; i++) {
+          var invisibleClasses = attrs.elementInvisibleFor.split(' ');
+          for (var i = 0; i < invisibleClasses.length; i++) {
             classes[invisibleClasses[0]] = true;
           }
 
           //add $watch for handling window resize
-          $rootScope.$watch('windowWidth', function(newVal, oldVal) {
-
+          $rootScope.$watch('windowWidth', function (newVal, oldVal) {
             elements.removeClass('cssMediaQueryClasschange--invisible');
-
             if (matchmedia.isPhone() && classes.palm) {
               elements.addClass('cssMediaQueryClasschange--invisible');
             } else if (matchmedia.isTablet() && classes.lap) {
@@ -152,8 +150,7 @@
             } else if (matchmedia.isDesktop() && classes.desk) {
               elements.addClass('cssMediaQueryClasschange--invisible');
             }
-
-          })
+          });
 
         }
       };
