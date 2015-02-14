@@ -2,7 +2,7 @@
   "name": "angular-media-query-handler",
   "version": "0.2.0",
   "main": [
-    "dist/angular-media-query-handler.js"
+    "dist/angular-media-query-handler.js",
     "dist/angular-media-query-handler.css"
   ],
   "dependencies": {
