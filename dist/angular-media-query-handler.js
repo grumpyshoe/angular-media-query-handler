@@ -122,7 +122,7 @@
           var classes = {};
           var invisibleClasses = attrs.elementInvisibleFor.split(' ');
           for (var i = 0; i < invisibleClasses.length; i++) {
-            classes[invisibleClasses[0]] = true;
+            classes[invisibleClasses[i]] = true;
           }
           //add $watch for handling window resize
           $rootScope.$watch('windowWidth', function (newVal, oldVal) {
