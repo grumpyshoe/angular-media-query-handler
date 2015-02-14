@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,6BAA8B;EAC5B,OAAO,EAAE,eAAe;EACxB,UAAU,EAAE,iBAAiB",
+"sources": ["../src/angular-media-query-handler.scss"],
+"names": [],
+"file": "angular-media-query-handler.css"
+}

@@ -1,0 +1,6 @@
+.mediaQueryHandler--invisible {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/*# sourceMappingURL=angular-media-query-handler.css.map */

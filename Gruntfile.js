@@ -76,17 +76,17 @@ module.exports = function(grunt) {
         dest: '<%= yo.dist %>/<%= pkg.name %>.js'
       }
     },
-    // sass: { // Task
-    //   dist: { // Target
-    //     options: { // Target options
-    //       style: 'expanded',
-    //       debugInfo: false
-    //     },
-    //     files: { // Dictionary of files
-    //       '<%= yo.dist %>/<%= pkg.name %>.css': '<%= yo.src %>/<%= pkg.name %>.scss'
-    //     }
-    //   }
-    // },
+    sass: { // Task
+      dist: { // Target
+        options: { // Target options
+          style: 'expanded',
+          debugInfo: false
+        },
+        files: { // Dictionary of files
+          '<%= yo.dist %>/<%= pkg.name %>.css': '<%= yo.src %>/<%= pkg.name %>.scss'
+        }
+      }
+    },
     uglify: {
       dist: {
         files: {
@@ -101,7 +101,8 @@ module.exports = function(grunt) {
     'clean:dist',
     'concat:dist',
     'ngmin:dist',
-    'uglify:dist'
+    'uglify:dist',
+    'sass:dist'
   ]);
   grunt.registerTask('default', [
     'build'

@@ -115,6 +115,7 @@
     '$rootScope',
     'matchmedia',
     function ($rootScope, matchmedia) {
+      var invisibleClassIdentifier = 'mediaQueryHandler--invisible';
       return {
         restrict: 'A',
         link: function (scope, elements, attrs) {
@@ -125,13 +126,13 @@
           }
           //add $watch for handling window resize
           $rootScope.$watch('windowWidth', function (newVal, oldVal) {
-            elements.removeClass('cssMediaQueryClasschange--invisible');
+            elements.removeClass(invisibleClassIdentifier);
             if (matchmedia.isPhone() && classes.palm) {
-              elements.addClass('cssMediaQueryClasschange--invisible');
+              elements.addClass(invisibleClassIdentifier);
             } else if (matchmedia.isTablet() && classes.lap) {
-              elements.addClass('cssMediaQueryClasschange--invisible');
+              elements.addClass(invisibleClassIdentifier);
             } else if (matchmedia.isDesktop() && classes.desk) {
-              elements.addClass('cssMediaQueryClasschange--invisible');
+              elements.addClass(invisibleClassIdentifier);
             }
           });
         }

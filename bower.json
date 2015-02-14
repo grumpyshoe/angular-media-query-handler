@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "main": [
     "dist/angular-media-query-handler.js"
+    "dist/angular-media-query-handler.css"
   ],
   "dependencies": {
     "matchmedia-ng": "https://github.com/AnalogJ/matchmedia-ng.git#~1.0.5"
