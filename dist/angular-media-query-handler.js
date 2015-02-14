@@ -119,8 +119,8 @@
         restrict: 'A',
         link: function (scope, elements, attrs) {
           var classes = {};
-          var invisibleClasses = attrs.invisibleFor.split(' ');
-          for (var i = 0; i < elementInvisibleFor.length; i++) {
+          var invisibleClasses = attrs.elementInvisibleFor.split(' ');
+          for (var i = 0; i < invisibleClasses.length; i++) {
             classes[invisibleClasses[0]] = true;
           }
           //add $watch for handling window resize
